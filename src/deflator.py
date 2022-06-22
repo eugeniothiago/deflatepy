@@ -21,17 +21,19 @@ def deflate(
         sys.exit(1)
     if not deflate_month:
         series = "yearly"
-        target_date = int(pd.to_datetime(datetime(deflate_year, 1, 1)).strftime("%Y"))
         date_format = "%Y"
+        target_date = int(
+            pd.to_datetime(datetime(deflate_year, 1, 1)).strftime(date_format)
+        )
         conversion_type = "int"
-        #data_frame[date_column] = data_frame[date_column].astype('int')
     else:
         series = "monthly"
-        target_date = pd.to_datetime(datetime(deflate_year, deflate_month, 1)).strftime(
-            "%Y-%m"
-        )
         date_format = "%Y-%m"
+        target_date = pd.to_datetime(datetime(deflate_year, deflate_month, 1)).strftime(
+            date_format
+        )
         conversion_type = "object"
+
     ipca_values = api_call(series=series)
 
     ipca_values = ipca_values[["date", "ipca"]]
