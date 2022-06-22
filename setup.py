@@ -8,7 +8,7 @@ project_urls = {
 
 setuptools.setup(
     name="deflatepybr",
-    version="0.0.6",
+    version="0.0.3",
     author="Thiago Eugênio",
     description="A simple package to deflate BR currency values using IPCA's historical yearly and monthly indexes",
     long_description=long_description,
