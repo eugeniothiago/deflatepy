@@ -6,6 +6,8 @@ Throught IPEA Data's API the function gather historical IPCA indexes and then de
 
 ### How to use it:
 
+You need `pandas` and `requests` packages installed in your environment ( `python -m pip install pandas requests`).
+
 The function takes 5 arguments:
 - `data_frame`: A `Pandas.DataFrame` with the data;
 - `value_column`(str): A column containing the values to deflate;
