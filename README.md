@@ -1,12 +1,14 @@
 # Python brazilian currency deflator
 
-A simple python package to deflate historical values using IPCA (Consumers Broad Price Index).
+A simple python package to deflate historical yearly or monthly values using IPCA (Consumers Broad Price Index).
 
-Throught IPEA Data's API the function gather historical IPCA indexes and then deflate the data passed as a dataframe.
+Throught IPEA Data's API the function gather historical IPCA indexes and then deflate the values passed as a dataframe.
 
 ### How to use it:
 
-You need `pandas` and `requests` packages installed in your environment ( `python -m pip install pandas requests`).
+- You need `pandas` and `requests` packages installed in your environment ( `python -m pip install pandas requests`).
+- Install the package (`pip install deflatepybr`)
+- Then `import deflator` -> `deflator.deflate(args)` **or** `from deflator import deflate` directly.
 
 The function takes 5 arguments:
 - `data_frame`: A `Pandas.DataFrame` with the data;
