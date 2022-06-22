@@ -19,4 +19,4 @@ The function takes 5 arguments:
 
 If only `deflate_year` is passed, the functions assumes that `date_column`contains **integer** values (2000,2008, etc). Otherwise the function assumes that `date_column` is **object** type (2000-12, 2008-10, etc).
 
-Use cases can be found in the `example.ipynb` jupyter file.
+Use cases can be found in the `example.ipynb` jupyter file available on the project's Github.
