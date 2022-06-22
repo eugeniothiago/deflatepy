@@ -1,7 +1,7 @@
 import pandas as pd
 import sys
 from datetime import datetime
-from src.api_call import api_call
+from deflator.api_call import api_call
 
 
 def deflate(
