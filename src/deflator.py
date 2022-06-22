@@ -1,7 +1,7 @@
 import pandas as pd
 import sys
 from datetime import datetime
-from api_call import api_call
+from src.api_call import api_call
 
 
 def deflate(
@@ -24,6 +24,7 @@ def deflate(
         target_date = int(pd.to_datetime(datetime(deflate_year, 1, 1)).strftime("%Y"))
         date_format = "%Y"
         conversion_type = "int"
+        #data_frame[date_column] = data_frame[date_column].astype('int')
     else:
         series = "monthly"
         target_date = pd.to_datetime(datetime(deflate_year, deflate_month, 1)).strftime(
