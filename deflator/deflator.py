@@ -58,8 +58,6 @@ def deflate(
 
     data_frame["deflated_value"] = temp_df["deflated_value"]
     return data_frame
-    """return {'data_frame':data_frame,'deflator':deflator,'temp_df':temp_df,'ipca_values':ipca_values,
-            'target_date':target_date,'target_date':target_date,'conversion_type':conversion_type}"""
 
 if __name__ =='__main__':
     deflate()

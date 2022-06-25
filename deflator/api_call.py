@@ -13,7 +13,7 @@ def api_call(series: str) -> pd.DataFrame:
             otherwise series='yearly'
     """
     base_url = "http://www.ipeadata.gov.br/api/odata4/Metadados"
-    series_dict = {"yearly": "('PRECOS_IPCAG')", "monthly": "('PRECOS12_IPCA15G12')"}
+    series_dict = {"yearly": "('PRECOS_IPCAG')", "monthly": "('PRECOS12_IPCAG12')"}
     series_type = ""
     if series == "yearly":
         series_type = series_dict["yearly"]
