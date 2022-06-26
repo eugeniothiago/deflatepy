@@ -8,3 +8,4 @@ deflatepybr.egg-info/top_level.txt
 deflator/__init__.py
 deflator/api_call.py
 deflator/deflator.py
+deflator/utils.py

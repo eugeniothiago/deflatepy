@@ -14,6 +14,7 @@ def deflate(
 ):
     series = ""
     target_date = None
+    conversion_type = "object"
     if not date_column:
         return print(f"The date_column argument must be specified!")
     if not value_column:
@@ -23,19 +24,17 @@ def deflate(
     if not deflate_month:
         series = "yearly"
         date_format = "%Y"
-        target_date = int(
-            pd.to_datetime(datetime(deflate_year, 1, 1)).strftime(date_format)
-        )
-        conversion_type = "int"
+        target_date = pd.to_datetime(datetime(deflate_year, 1, 1)).strftime(date_format)
+        #conversion_type = "int"
     else:
         series = "monthly"
         date_format = "%Y-%m"
         target_date = pd.to_datetime(datetime(deflate_year, deflate_month, 1)).strftime(
             date_format
         )
-        conversion_type = "object"
+        
 
-    try:
+    """try:
         data_frame[date_column] = (
             pd.to_datetime(data_frame[date_column])
             .dt.strftime(date_format)
@@ -44,10 +43,11 @@ def deflate(
     except Exception as error:
         return print(
             f"Não foi possível converter a coluna {date_column} para um formato de data. Detalhes do erro: \n {error}"
-        )
+        )"""
 
     try:
         data_frame[value_column] = data_frame[value_column].apply(str_to_float)
+        data_frame[value_column] = data_frame[value_column].astype('Float64')
     except Exception as error:
         return print(f"{error}")
 
@@ -63,17 +63,19 @@ def deflate(
         right=ipca_values,
         left_on=date_column,
         right_on="date",
-        how="left",
+        how="inner",
     )
 
-    deflator = temp_df.loc[temp_df["date"] == target_date]["ipca"].squeeze()
+    deflator = ipca_values.loc[ipca_values["date"] == target_date]["ipca"].squeeze()
 
     temp_df["deflated_value"] = temp_df[value_column] * (
         deflator / temp_df["ipca"].squeeze()
     )
 
     data_frame["deflated_value"] = temp_df["deflated_value"]
-    return data_frame
+    return {'series':series, "target_date":target_date, 
+    "date_format":date_format,"ipca_values":ipca_values,
+    "deflator":deflator, "temp_df":temp_df,"conversion_type":conversion_type, "data_frame":data_frame}
 
 
 if __name__ == "__main__":
