@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: deflatepybr
-Version: 0.0.6
+Version: 0.0.8
 Summary: A simple package to deflate BR currency values using IPCA's historical yearly and monthly indexes
 Author: Thiago Eugênio
 Project-URL: Github, https://github.com/eugeniothiago/deflatepy
