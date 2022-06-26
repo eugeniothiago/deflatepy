@@ -1,10 +1,8 @@
 import setuptools
 
-long_description = open('README.md').read()
+long_description = open("README.md").read()
 
-project_urls = {
-    "Github":"https://github.com/eugeniothiago/deflatepy"
-}
+project_urls = {"Github": "https://github.com/eugeniothiago/deflatepy"}
 
 setuptools.setup(
     name="deflatepybr",
@@ -13,8 +11,8 @@ setuptools.setup(
     description="A simple package to deflate BR currency values using IPCA's historical yearly and monthly indexes",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    project_urls = project_urls,
+    project_urls=project_urls,
     packages=["deflator"],
-    readme = "README.md",
-    install_requires=["requests","pandas"],
+    readme="README.md",
+    install_requires=["requests", "pandas"],
 )

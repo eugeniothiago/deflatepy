@@ -2,7 +2,7 @@
 
 A simple python package to deflate historical yearly or monthly values using IPCA (Consumers Broad Price Index).
 
-Throught IPEA Data's API the function gather historical IPCA yearly (PRECOS_IPCAG series) and monthly (PRECOS12_IPCA15G12 series) indexes to deflate currency values.
+Throught IPEA Data's API the function gather historical IPCA yearly (PRECOS_IPCAG series) and monthly (PRECOS12_IPCAG12 series) indexes to deflate currency values.
 
 ### Installation:
 
@@ -17,6 +17,6 @@ The function takes 5 arguments:
 - `deflate_year`(int): Year that you wanna deflate the series to;
 - `deflate_month`(int), optional: Month to deflate if you need monthly index values.
 
-If only `deflate_year` is passed, the functions assumes that `date_column`contains **integer** values (**YYYY** format). Otherwise the function assumes that `date_column` is **object** type (**YYYY-MM** format).
+If only `deflate_year` is passed, the functions assumes that Yearly values are desired.
 
-Examples can be found in the `example.ipynb` jupyter notebook file available on the project's Github.
+Examples can be found in the `example.ipynb` jupyter notebook file available on the project's Github page.

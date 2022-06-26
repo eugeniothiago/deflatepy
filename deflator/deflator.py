@@ -2,6 +2,7 @@ import pandas as pd
 import sys
 from datetime import datetime
 from deflator.api_call import api_call
+from deflator.utils import str_to_float
 
 
 def deflate(
@@ -13,12 +14,12 @@ def deflate(
 ):
     series = ""
     target_date = None
+    if not date_column:
+        return print(f"The date_column argument must be specified!")
     if not value_column:
-        print("You must especify the column to be deflated.")
-        sys.exit(1)
+        return print(f"You must especify the column to be deflated.")
     if not deflate_year:
-        print("At least the deflate_year argument must be specified")
-        sys.exit(1)
+        return print(f"At least the deflate_year argument must be specified!")
     if not deflate_month:
         series = "yearly"
         date_format = "%Y"
@@ -34,6 +35,22 @@ def deflate(
         )
         conversion_type = "object"
 
+    try:
+        data_frame[date_column] = (
+            pd.to_datetime(data_frame[date_column])
+            .dt.strftime(date_format)
+            .astype(conversion_type)
+        )
+    except Exception as error:
+        return print(
+            f"Não foi possível converter a coluna {date_column} para um formato de data. Detalhes do erro: \n {error}"
+        )
+
+    try:
+        data_frame[value_column] = data_frame[value_column].apply(str_to_float)
+    except Exception as error:
+        return print(f"{error}")
+
     ipca_values = api_call(series=series)
 
     ipca_values = ipca_values[["date", "ipca"]]
@@ -41,7 +58,6 @@ def deflate(
     ipca_values["date"] = (
         ipca_values["date"].dt.strftime(date_format).astype(conversion_type)
     )
-    data_frame[date_column] = data_frame[date_column].astype(conversion_type)
     temp_df = pd.merge(
         left=data_frame,
         right=ipca_values,
@@ -59,5 +75,6 @@ def deflate(
     data_frame["deflated_value"] = temp_df["deflated_value"]
     return data_frame
 
-if __name__ =='__main__':
+
+if __name__ == "__main__":
     deflate()
